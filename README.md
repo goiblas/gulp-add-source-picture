@@ -31,7 +31,16 @@ You put html in:
 And get html out:
 ``` html
 <picture>
-    <source srcset="../images/image.jpg 583w, ../images/image@0,5x.jpg 292w, ../images/image@1,5x.jpg 875w, ../images/image@2x.jpg 1167w, ../images/image@3x.jpg 1750w">
+    <source type="image/webp" srcset="../images/image.webp 583w,
+                    ../images/image@1,5x.webp 875w,
+                    ../images/image@2x.webp 1167w,
+                    ../images/image@3x.webp 1750w">
+
+    <source srcset="../images/image.jpg 583w,
+                    ../images/image@1,5x.jpg 875w,
+                    ../images/image@2x.jpg 1167w,
+                    ../images/image@3x.jpg 1750w">
+
     <img src="../images/image.jpg" alt="example">
 </picture>
 ```
