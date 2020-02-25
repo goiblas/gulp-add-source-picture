@@ -33,20 +33,28 @@ module.exports = function (folder = '/img') {
 
         var globalPromises = [];
 
+        function getImageName(imageName) {
+            if(imageName.lastIndexOf('@') !== -1) {
+                var aPos = imageName.lastIndexOf('@');
+                return imageName.substr(0, aPos);
+            }
+            return imageName;
+        }
         $('picture').each( function(item){
             var $this = $(this);
             var $img = $this.find('img');
             var src = $img.attr('src');
+
             var rootSrc = path.parse(src).dir + '/';
-            var imageName = path.parse(src).name;
+            var imageName = getImageName(path.parse(src).name);
 
             var promisesMatches = [];
             var source = [];
             var sourceWebP = [];
 
             folderImages.forEach( ins => {
-                var aPos = ins.lastIndexOf('@');
-                var insName = ins.substr(0, aPos);
+            
+                var insName = getImageName(ins);
 
                 if(imageName === insName || imageName === path.parse(ins).name){
                     var route = folder + '/' + ins;
@@ -93,7 +101,7 @@ module.exports = function (folder = '/img') {
             
             Promise.all(globalPromises)
             .then( () => {
-                file.contents = new Buffer($.html());
+                file.contents = Buffer.from($.html());
                 cb(null, file);
             })
             .catch( err => {

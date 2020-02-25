@@ -1,6 +1,6 @@
 {
   "name": "gulp-add-source-picture",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Add sources and width to picture programmatically",
   "main": "index.js",
   "scripts": {
@@ -9,11 +9,11 @@
   "author": "Jesús Olazagoitia <jesus.designer@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^0.20.0",
-    "through2": "^2.0.1"
+    "cheerio": "^0.22.0",
+    "through2": "^3.0.1"
   },
   "devDependencies": {
     "gulp-util": "^3.0.5",
-    "image-size": "^0.6.1"
+    "image-size": "^0.8.3"
   }
 }
