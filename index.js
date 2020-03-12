@@ -1,10 +1,11 @@
-const PLUGIN_NAME = 'gulp-add-source-picture';
-
+var PluginError = require('plugin-error');
 var through = require('through2');
 var cheerio = require('cheerio');
 var sizeOf = require('image-size');
 var fs = require('fs');
 var path = require('path');
+
+const PLUGIN_NAME = 'gulp-add-source-picture';
 
 function getFiles(dir){
     return fs.readdirSync(dir).filter( file => {
@@ -24,7 +25,7 @@ module.exports = function (folder = '/img') {
         }
 
         if (file.isStream()) {
-            cb(new gutil.PluginError(PLUGIN_NAME, 'Streaming not supported'));
+            cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
             return;
         }
 
@@ -79,6 +80,7 @@ module.exports = function (folder = '/img') {
 
             Promise.all(promisesMatches)
                 .then( () => {
+                    
                     var htmlSourceWebP = '';
                     var htmlSource = '';
 
@@ -94,7 +96,7 @@ module.exports = function (folder = '/img') {
                     $this.prepend(htmlSourceWebP);
                 })
                 .catch( err => {
-                    cb(new gutil.PluginError(PLUGIN_NAME, err));
+                    cb(new PluginError(PLUGIN_NAME, err));
                     return;
                 })
             })
@@ -105,7 +107,7 @@ module.exports = function (folder = '/img') {
                 cb(null, file);
             })
             .catch( err => {
-                cb(new gutil.PluginError(PLUGIN_NAME, err));
+                cb(new PluginError(PLUGIN_NAME, err));
                 return;
             })
 
