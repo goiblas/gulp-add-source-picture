@@ -86,11 +86,11 @@ module.exports = function (folder = '/img') {
 
                     if(sourceWebP.length){
                         htmlSourceWebP = `<source type="image/webp" 
-                                            srcset="${sourceWebP.join(', ')}" />`
+                                            srcset="${sourceWebP.join(', ')}" sizes="100vw" />`
                     }
 
                     if( source.length){
-                        htmlSource = `<source srcset="${source.join(', ')}" />`
+                        htmlSource = `<source srcset="${source.join(', ')}" sizes="100vw" />`
                     }
                     $this.prepend(htmlSource);
                     $this.prepend(htmlSourceWebP);
